@@ -1,5 +1,5 @@
 # this is product.py file. 
-
+import random
 
 class Product:
 # all the variabls that are attached to the product
@@ -35,3 +35,5 @@ class Product:
 # built in function that changes the total amount of product made that month
     def set_Monthly_Production(self, NewMonthlyProduction):
         self.Monthly_Production = NewMonthlyProduction
+
+

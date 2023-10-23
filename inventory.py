@@ -73,9 +73,19 @@ def Enter_Monthly_Production():
         else: print("Please input a proper number.")
 
 # simulates the amount of product sold in a month.
-def Stock_Sold(current_stock):
-    number_sold = random.randrange(0, current_stock)
-    return number_sold
+def Stock_Sold(current_stock, production):
+    sale_variance = random.randrange(1, 11)
+    variance_state = random.randrange(1, 3)
+    if variance_state == 1:
+        sold = production - sale_variance
+        if sold <= 0:
+            sold = 0
+    elif variance_state == 2:
+        sold = production + sale_variance
+        if sold >= current_stock:
+            sold = current_stock
+    else: print ("there was a problem")
+    return sold
 
 # calculates the stock remaining after a month of selling the product.
 def Find_Stock_Remaining(current_stock, number_sold):
@@ -124,7 +134,7 @@ while month_count <= 12:
     print("____________________________________________")
     print(" Month:", month_count)
     print(" Manufactured: " + str(Chair.Monthly_Production) + " units")
-    sold = Stock_Sold(Chair.Stock)
+    sold = Stock_Sold(Chair.Stock, Chair.Monthly_Production)
     print(" Sold: "+ str(sold) + " units")
     Chair.Stock = Find_Stock_Remaining(Chair.Stock, sold)
     Chair.Stock = Stock_Production(Chair.Stock, Chair.Monthly_Production)
