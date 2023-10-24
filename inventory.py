@@ -134,11 +134,11 @@ print(" Monthly Production: ", Chair.Monthly_Production)
 print("Welcome to Programming Principles Sample Product Inventory")
 
 
-profit = 0
-month_count = 1
-while month_count <= 12:
+accrued_profit = 0
+month_index = 1
+while month_index <= 12:
     print("____________________________________________")
-    print(" Month:", month_count)
+    print(" Month:", month_index)
     print(" Manufactured: " + str(Chair.Monthly_Production) + " units")
     
     sold = Stock_Sold(Chair.Stock, Chair.Monthly_Production)
@@ -149,8 +149,8 @@ while month_count <= 12:
     print(" Stock: "+ str(Chair.Stock) + " units")
     
     monthly_cost = Cost_Of_Production(Chair.Monthly_Production, Chair.Manufacture_Cost)
-    profit = Total_Profit(sold, Chair.Sale_Price, monthly_cost, profit)
-    month_count += 1
+    accrued_profit = Total_Profit(sold, Chair.Sale_Price, monthly_cost, accrued_profit)
+    month_index += 1
 
 
-print("The total profit for 12 month is: ", profit)
+print("The total profit for 12 month is: ", accrued_profit)
