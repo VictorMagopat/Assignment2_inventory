@@ -1,9 +1,15 @@
-# this is inventory.py file. happy
+# This is inventory.py file. Created: 2023.10.19
+# Author: Victor Magopat
+# This file implements the inventory simulation.
+# The product-class is instantiated using user input.
+# A simulation is running to estimate sales for 12 months. 
+# It prints the annual statement for the profit of the simulation.
+
 # import all moduals
 import random
 import product
 
-# Determine if the variable can be turned into a Int or Float.
+# determines if the variable can be converted into an Int or Float.
 def Is_Number(number):
     num_truth = number.isnumeric()
     if num_truth == False:
@@ -134,14 +140,17 @@ while month_count <= 12:
     print("____________________________________________")
     print(" Month:", month_count)
     print(" Manufactured: " + str(Chair.Monthly_Production) + " units")
+    
     sold = Stock_Sold(Chair.Stock, Chair.Monthly_Production)
     print(" Sold: "+ str(sold) + " units")
+    
     Chair.Stock = Find_Stock_Remaining(Chair.Stock, sold)
     Chair.Stock = Stock_Production(Chair.Stock, Chair.Monthly_Production)
     print(" Stock: "+ str(Chair.Stock) + " units")
+    
     monthly_cost = Cost_Of_Production(Chair.Monthly_Production, Chair.Manufacture_Cost)
     profit = Total_Profit(sold, Chair.Sale_Price, monthly_cost, profit)
     month_count += 1
 
 
-print("the total profit was: ", profit)
+print("The total profit for 12 month is: ", profit)

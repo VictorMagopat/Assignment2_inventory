@@ -1,8 +1,11 @@
-# this is product.py file. 
+# this is the product.py file. Created: 2023.10.19
+# Author: Victor Magopat
+# Contains the implementation the class Product.
+
 import random
 
 class Product:
-# all the variabls that are attached to the product
+# all the variables that are attached to the product
     def __init__(self, Name = "Unknown", Code = 100, Stock = 0, Sale_Price = 0, Manufacture_Cost = 0, Monthly_Production = 0):
         self.Name = Name
         self.Code = Code
@@ -12,27 +15,27 @@ class Product:
         self.Monthly_Production = Monthly_Production
         pass
 
-# built in function that changes the Name.
+# this function sets the Name of the product.
     def set_Name(self, NewName):        
         self.Name = NewName
 
-# built in function that changes the Code.
+# this function set the Code of the product.
     def set_Code(self, NewCode):
         self.Code = NewCode
 
-# built in function that changes the current stock
+# this function sets the current stock.
     def set_Stock(self, NewStock):
         self.Stock = NewStock
 
-# built in function that changes the sale price of the product
+# this function sets the sale price of the product.
     def set_Sale_Price(self, NewSalePrice):
         self.Sale_Price = NewSalePrice
 
-# built in function that changes the cost of manufacturing the product
+# this function sets the cost of manufacturing the product.
     def set_Manufacture_Cost(self, NewManufactureCost):
         self.Manufacture_Cost = NewManufactureCost
 
-# built in function that changes the total amount of product made that month
+# this function sets the total amount of product made that month.
     def set_Monthly_Production(self, NewMonthlyProduction):
         self.Monthly_Production = NewMonthlyProduction
 
