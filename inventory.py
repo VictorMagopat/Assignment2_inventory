@@ -93,25 +93,10 @@ def Stock_Sold(current_stock, production):
     else: print ("there was a problem")
     return sold
 
-# calculates the stock remaining after a month of selling the product.
-def Find_Stock_Remaining(current_stock, number_sold):
-    remaining_stock = current_stock - number_sold
-    return remaining_stock
-
-# calculates the stock after the month of production.
-def Stock_Production(current_stock, stock_produced):
-    total_stock = current_stock + stock_produced
-    return total_stock
-
-# calculates the cost of producing more products for every month
-def Cost_Of_Production(monthly_production, manufacture_cost):
-    monthly_cost = monthly_production * manufacture_cost
-    return monthly_cost
-
 # calculates the revenue for the month, subtracts the cost and then adds the previos months profit
-def Total_Profit(number_sold, sale_price, monthly_cost, profit):
+def Total_Profit(number_sold, sale_price, monthly_cost):
     revenue = number_sold * sale_price
-    profit = revenue - monthly_cost + profit
+    profit = revenue - monthly_cost
     return profit
 
 Chair = product.Product()
@@ -140,16 +125,20 @@ while month_index <= 12:
     print("____________________________________________")
     print(" Month:", month_index)
     print(" Manufactured: " + str(Chair.Monthly_Production) + " units")
-    
-    sold = Stock_Sold(Chair.Stock, Chair.Monthly_Production)
-    print(" Sold: "+ str(sold) + " units")
-    
-    Chair.Stock = Find_Stock_Remaining(Chair.Stock, sold)
-    Chair.Stock = Stock_Production(Chair.Stock, Chair.Monthly_Production)
+
+    # update the stock with the month of production.
+    Chair.Stock += Chair.Monthly_Production
+
+    units_sold = Stock_Sold(Chair.Stock, Chair.Monthly_Production)
+    print(" Sold: "+ str(units_sold) + " units")
+
+    # update the stock after a month of selling the product.    
+    Chair.Stock -= units_sold
+
     print(" Stock: "+ str(Chair.Stock) + " units")
-    
-    monthly_cost = Cost_Of_Production(Chair.Monthly_Production, Chair.Manufacture_Cost)
-    accrued_profit = Total_Profit(sold, Chair.Sale_Price, monthly_cost, accrued_profit)
+
+    # calculates the net profit for that month and adds it to the total profit
+    accrued_profit += (units_sold * Chair.Sale_Price) - (Chair.Monthly_Production * Chair.Manufacture_Cost)
     month_index += 1
 
 
