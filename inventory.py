@@ -9,7 +9,7 @@
 import random
 import product
 
-# determines if the variable can be converted into an Int or Float.
+# determines if the variable can be converted to a Float.
 def Is_Number(number):
     num_truth = number.isnumeric()
     if num_truth == False:
@@ -79,19 +79,21 @@ def Enter_Monthly_Production():
         else: print("Please input a proper number.")
 
 # simulates the amount of product sold in a month.
-def Stock_Sold(current_stock, production):
+def Simulate_Units_Sold(current_stock, production):
+    # random number used simulate the units sold 
     sale_variance = random.randrange(1, 11)
+    # random number used to determined sign (+) or (-)
     variance_state = random.randrange(1, 3)
     if variance_state == 1:
-        sold = production - sale_variance
-        if sold <= 0:
-            sold = 0
+        units_sold = production - sale_variance
+        if units_sold <= 0:
+            units_sold = 0
     elif variance_state == 2:
-        sold = production + sale_variance
-        if sold >= current_stock:
-            sold = current_stock
+        units_sold = production + sale_variance
+        if units_sold >= current_stock:
+            units_sold = current_stock
     else: print ("there was a problem")
-    return sold
+    return units_sold
 
 # calculates the revenue for the month, subtracts the cost and then adds the previos months profit
 def Total_Profit(number_sold, sale_price, monthly_cost):
@@ -99,8 +101,11 @@ def Total_Profit(number_sold, sale_price, monthly_cost):
     profit = revenue - monthly_cost
     return profit
 
+# the application starts here
+# instantiate the product Chair
 Chair = product.Product()
 
+# set the attributes of the product Chair using the user input
 Enter_Product_Name()
 Enter_Code()
 Enter_Stock()
@@ -108,7 +113,7 @@ Enter_Sale_Price()
 Enter_Manufacture_Cost()
 Enter_Monthly_Production()
 
-
+# print the product attributes
 print("****** Programming Principles Sample Stock Statement******")
 print(" Product Code:", Chair.Code)
 print(" Product Name: ", Chair.Name)
@@ -118,10 +123,13 @@ print(" Manufacture Cost :", Chair.Manufacture_Cost)
 print(" Monthly Production: ", Chair.Monthly_Production)
 print("Welcome to Programming Principles Sample Product Inventory")
 
-
+# accumulates the profit over the-12 month period
 accrued_profit = 0
+# index of the month in process
 month_index = 1
-while month_index <= 12:
+# the number of the months in one year
+months_in_year = 12
+while month_index <= months_in_year:
     print("____________________________________________")
     print(" Month:", month_index)
     print(" Manufactured: " + str(Chair.Monthly_Production) + " units")
@@ -129,7 +137,7 @@ while month_index <= 12:
     # update the stock with the month of production.
     Chair.Stock += Chair.Monthly_Production
 
-    units_sold = Stock_Sold(Chair.Stock, Chair.Monthly_Production)
+    units_sold = Simulate_Units_Sold(Chair.Stock, Chair.Monthly_Production)
     print(" Sold: "+ str(units_sold) + " units")
 
     # update the stock after a month of selling the product.    
@@ -142,4 +150,4 @@ while month_index <= 12:
     month_index += 1
 
 
-print("The total profit for 12 month is: ", accrued_profit)
+print("The total profit for the 12 month period is: ", accrued_profit)
