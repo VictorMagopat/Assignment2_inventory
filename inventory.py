@@ -20,12 +20,12 @@ def Is_Number(number):
             num_truth = False
     return num_truth
 
-# sets a name of the product to the object
+# sets the name of the product using user's input
 def Enter_Product_Name():
     Product_Name = input("Please enter the Product Name: ")
     Chair.set_Name(Product_Name)
 
-# sets a code associated to the product to the object
+# sets the code associated to the product using user's input
 def Enter_Code():
     while True:
         product_code = input("Please enter the code of the product [100 to 1000]: ")
@@ -38,7 +38,7 @@ def Enter_Code():
             else: print("Please enter a number in range 100 to 1000.")
         else: print("Please enter a number in range 100 to 1000.")
 
-# sets the curent stock of the product to the object
+# sets the curent stock using user's input
 def Enter_Stock():
     while True:
         curent_stock = input("Please enter the current count in stock: ")
@@ -48,7 +48,7 @@ def Enter_Stock():
             return None
         else: print("Please input a proper number.")
 
-# sets the sale price of the product to the object
+# sets the sale price of the product using user's input
 def Enter_Sale_Price():
     while True:
         sale_price = input("Please enter the products selling price: ")
@@ -58,7 +58,7 @@ def Enter_Sale_Price():
             return None
         else: print("Please input a proper number.")
 
-# sets the cost to make the product to the object
+# sets the cost to make the product using user's input
 def Enter_Manufacture_Cost():
     while True:
         manufacture_cost = input("Please enter the cost of manufacturing the product: ")
@@ -68,7 +68,7 @@ def Enter_Manufacture_Cost():
             return None
         else: print("Please enter a proper number.")
 
-# sets the amount stock made  of the product to the object
+# sets the amount stock using user's input
 def Enter_Monthly_Production():
     while True:
         monthly_production = input("Please enter the amount of product made in one month: ")
@@ -78,7 +78,7 @@ def Enter_Monthly_Production():
             return None
         else: print("Please input a proper number.")
 
-# simulates the amount of product sold in a month.
+# simulates the amount of product sold in a month
 def Simulate_Units_Sold(current_stock, production):
     # random number used simulate the units sold 
     sale_variance = random.randrange(1, 11)
@@ -94,12 +94,6 @@ def Simulate_Units_Sold(current_stock, production):
             units_sold = current_stock
     else: print ("there was a problem")
     return units_sold
-
-# calculates the revenue for the month, subtracts the cost and then adds the previos months profit
-def Total_Profit(number_sold, sale_price, monthly_cost):
-    revenue = number_sold * sale_price
-    profit = revenue - monthly_cost
-    return profit
 
 # the application starts here
 # instantiate the product Chair
