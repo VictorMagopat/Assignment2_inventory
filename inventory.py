@@ -10,7 +10,7 @@ import random
 import product
 
 # determines if the variable can be converted to a Float.
-def Is_Number(number):
+def Is_Float(number):
     num_truth = number.isnumeric()
     if num_truth == False:
         try:
@@ -29,8 +29,7 @@ def Enter_Product_Name():
 def Enter_Code():
     while True:
         product_code = input("Please enter the code of the product [100 to 1000]: ")
-        valid_number = Is_Number(product_code)
-        if valid_number == True:
+        if product_code.isnumeric() == True:
             product_code = int(product_code)
             if product_code <= 1000 and product_code >= 100: 
                 Chair.set_Code(int(product_code))
@@ -42,8 +41,7 @@ def Enter_Code():
 def Enter_Stock():
     while True:
         curent_stock = input("Please enter the current count in stock: ")
-        valid_number = Is_Number(curent_stock)
-        if valid_number == True:
+        if curent_stock.isnumeric() == True:
             Chair.set_Stock(int(curent_stock))
             return None
         else: print("Please input a proper number.")
@@ -52,7 +50,7 @@ def Enter_Stock():
 def Enter_Sale_Price():
     while True:
         sale_price = input("Please enter the products selling price: ")
-        valid_number = Is_Number(sale_price)
+        valid_number = Is_Float(sale_price)
         if valid_number == True:
             Chair.set_Sale_Price(round(float(sale_price),2))
             return None
@@ -62,8 +60,7 @@ def Enter_Sale_Price():
 def Enter_Manufacture_Cost():
     while True:
         manufacture_cost = input("Please enter the cost of manufacturing the product: ")
-        valid_number = Is_Number(manufacture_cost)
-        if valid_number == True:
+        if Is_Float(manufacture_cost) ==True:
             Chair.set_Manufacture_Cost(round(float(manufacture_cost),2))
             return None
         else: print("Please enter a proper number.")
@@ -72,8 +69,7 @@ def Enter_Manufacture_Cost():
 def Enter_Monthly_Production():
     while True:
         monthly_production = input("Please enter the amount of product made in one month: ")
-        valid_number = Is_Number(monthly_production)
-        if valid_number == True:
+        if monthly_production.isnumeric() == True:
             Chair.set_Monthly_Production(int(monthly_production))
             return None
         else: print("Please input a proper number.")
