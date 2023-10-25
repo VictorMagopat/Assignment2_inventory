@@ -54,7 +54,7 @@ def Enter_Sale_Price():
         sale_price = input("Please enter the products selling price: ")
         valid_number = Is_Number(sale_price)
         if valid_number == True:
-            Chair.set_Sale_Price(float(sale_price))
+            Chair.set_Sale_Price(round(float(sale_price),2))
             return None
         else: print("Please input a proper number.")
 
@@ -64,7 +64,7 @@ def Enter_Manufacture_Cost():
         manufacture_cost = input("Please enter the cost of manufacturing the product: ")
         valid_number = Is_Number(manufacture_cost)
         if valid_number == True:
-            Chair.set_Manufacture_Cost(float(manufacture_cost))
+            Chair.set_Manufacture_Cost(round(float(manufacture_cost),2))
             return None
         else: print("Please enter a proper number.")
 
@@ -81,17 +81,19 @@ def Enter_Monthly_Production():
 # simulates the amount of product sold in a month
 def Simulate_Units_Sold(current_stock, production):
     # random number used simulate the units sold 
-    sale_variance = random.randrange(1, 11)
+    sale_variance = random.randint(0, 10)
     # random number used to determined sign (+) or (-)
-    variance_state = random.randrange(1, 3)
+    variance_state = random.randint(1, 2)
     if variance_state == 1:
         units_sold = production - sale_variance
         if units_sold <= 0:
             units_sold = 0
     elif variance_state == 2:
         units_sold = production + sale_variance
-        if units_sold >= current_stock:
+        if units_sold > current_stock:
             units_sold = current_stock
+            print("Stock sold out.")
+        else: units_sold = current_stock
     else: print ("there was a problem")
     return units_sold
 

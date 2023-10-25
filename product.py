@@ -39,4 +39,9 @@ class Product:
     def set_Monthly_Production(self, NewMonthlyProduction):
         self.Monthly_Production = NewMonthlyProduction
 
-
+x = 0
+while x < 100:
+    sale_variance = random.randint(1, 3)
+    #if 1 == sale_variance: print(sale_variance)
+    if 3 == sale_variance: print(sale_variance)
+    x += 1
