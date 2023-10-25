@@ -90,10 +90,9 @@ def Simulate_Units_Sold(current_stock, production):
             units_sold = 0
     elif variance_state == 2:
         units_sold = production + sale_variance
-        if units_sold > current_stock:
+        if units_sold >= current_stock:
             units_sold = current_stock
             print("Stock sold out.")
-        else: units_sold = current_stock
     else: print ("there was a problem")
     return units_sold
 
@@ -121,10 +120,16 @@ print("Welcome to Programming Principles Sample Product Inventory")
 
 # accumulates the profit over the-12 month period
 accrued_profit = 0
+
+# stores the units sold that month
+units_sold = 0
+
 # index of the month in process
 month_index = 1
+
 # the number of the months in one year
 months_in_year = 12
+
 while month_index <= months_in_year:
     print("____________________________________________")
     print(" Month:", month_index)
@@ -145,5 +150,5 @@ while month_index <= months_in_year:
     accrued_profit += (units_sold * Chair.Sale_Price) - (Chair.Monthly_Production * Chair.Manufacture_Cost)
     month_index += 1
 
-
-print("The total profit for the 12 month period is: ", accrued_profit)
+# This prints the statment of the yearly profit
+print("The total profit for the 12 month period is: ", round(accrued_profit, 2))
